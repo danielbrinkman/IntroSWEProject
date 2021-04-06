@@ -7,5 +7,7 @@ class reservationItem(models.Model):
 class restaurantPizzaHutItem(models.Model):
 	peopleCount = models.TextField()
 	reservationName = models.TextField()
+	boothTable = models.TextField()
+	#reservationDate = models.TextField()
 	isReserved = True
 
