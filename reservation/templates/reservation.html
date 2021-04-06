@@ -9,10 +9,10 @@
 		<label for="Booth">Booth</label><br>
 		<input type="radio" id="Table" name="tablePref" value="Table">
 		<label for="Table">Table</label><br>
-		<input type="radio" id="No Preference" name="tablePref" value="No Preference">
+		<input type="radio" id="No Preference" name="tablePref" value="No Preference" checked>
 		<label for="No Preference">No Preference</label> <br>
 		<label for="reservationTime">Reservation date:</label>
-  		<input type="datetime-local" id="reservationTime" name="reservationTime">
+  		<input type="text" id="reservationTime" name="reservationTime">
         
 		<input type="submit" value="Make Reservation">
 	</form>
@@ -22,7 +22,9 @@
 		{% for i in all_items %} 
         	<li>
             		People Count: {{i.peopleCount}} <br>
-			Reservation Name: {{i.reservationName}}
+			Reservation Name: {{i.reservationName}} <br>
+			Preference: {{i.boothTable}}
+			<!--Reservation Date: {{i.reservationDate}}-->
         	</li>
 
         	<form action="/deleteReservationItem/{{i.id}}/" method = "post">{% csrf_token %}
