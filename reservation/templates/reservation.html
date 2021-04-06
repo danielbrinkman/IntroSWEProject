@@ -21,7 +21,7 @@
 	<ul>
 		{% for i in all_items %} 
         	<li>
-            		{{i.content}}
+            		{{i.peopleCount}} {{i.reservationName}}
         	</li>
 
         	<form action="/deleteReservationItem/{{i.id}}/" method = "post">{% csrf_token %}
