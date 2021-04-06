@@ -11,9 +11,10 @@ def addReservationView(request):
 	x = request.POST['peopleCount']
 	y = request.POST['reservationName']
 	z = request.POST['tablePref']
-	#d = request.POST['reservationDate']
-	new_item = restaurantPizzaHutItem(peopleCount=x, reservationName=y, boothTable=z)
+	requests = request.POST['comments']
+	new_item = restaurantPizzaHutItem(peopleCount=x, reservationName=y, boothTable=z, comments=requests)
 	new_item.save()
+	return HttpResponseRedirect('/reservation/')
 
 def deleteReservationView(request, i):
 	y = restaurantPizzaHutItem.objects.get(id= i)
