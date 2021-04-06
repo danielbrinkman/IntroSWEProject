@@ -2,8 +2,18 @@
 <body>
 	
 	<form action="/addReservationItem/" method = "post">{% csrf_token %}
-		<input type="text" name="peopleCount">
-		<input type="text" name="reservationName">
+		<input type="text" name="peopleCount" placeholder="How many people?">
+		<input type="text" name="reservationName" placeholder="Name"> <br>
+        	<input type="text" name="comments" placeholder="Special requests"> <br>
+		<input type="radio" id="Booth" name="tablePref" value="Booth">
+		<label for="Booth">Booth</label><br>
+		<input type="radio" id="Table" name="tablePref" value="Table">
+		<label for="Table">Table</label><br>
+		<input type="radio" id="No Preference" name="tablePref" value="No Preference">
+		<label for="No Preference">No Preference</label> <br>
+		<label for="birthdaytime">Reservation date:</label>
+  		<input type="datetime-local" id="reservationTime" name="reservationTime">
+        
 		<input type="submit" value="Make Reservation">
 	</form>
 
