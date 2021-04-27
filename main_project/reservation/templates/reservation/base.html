@@ -32,6 +32,10 @@
                 <a class="nav-item nav-link" href="{% url 'reservation-home' %}">Home</a>
                 <a class="nav-item nav-link" href="{% url 'reservation-about' %}">About</a>
                 <a class="nav-item nav-link" href="{% url 'make-reservation' %}">Make Reservation</a>
+<<<<<<< HEAD:main_project/reservation/templates/reservation/base.html
+=======
+                <a class="nav-item nav-link" href="{% url 'restaurant' %}">Restaurants</a>
+>>>>>>> c74333b0f5dcc7aeab1a0348f1c5409d24f04168:reservation/reservationapp/templates/reservationapp/base.html
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
@@ -52,7 +56,7 @@
         <div class="col-md-8">
             {% if messages %}
                 {% for message in messages %}
-                    <div class="alert alert-{{ message.tags }}" >
+                    <div class="alert {{ message.tags }} alert-dismissible" role="alert" >
                         {{ message }}
                     </div>
                 {% endfor %}

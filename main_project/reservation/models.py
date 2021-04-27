@@ -1,6 +1,6 @@
 from django.db import models
-from django.contrib.auth.models import User
 from django.utils import timezone
+
 
 class Reservation(models.Model):
     reservationName = models.TextField()
@@ -9,5 +9,5 @@ class Reservation(models.Model):
     boothTable = models.TextField()
     requests = models.TextField()
     user = models.TextField()
-
+    restaurant = models.TextField()
 
