@@ -1,22 +1,30 @@
-from django.shortcuts import render
-from django.http import HttpResponseRedirect
-from .models import *
+from django.shortcuts import render, redirect
+from .models import Reservation
+from users.models import *
 
-# Create your views here.
-def reservationView(request):
-	all_reservation_items = restaurantPizzaHutItem.objects.all()
-	return render(request, 'reservation.html', {'all_items':all_reservation_items})
 
-def addReservationView(request):
-	x = request.POST['peopleCount']
-	y = request.POST['reservationName']
-	z = request.POST['tablePref']
-	requests = request.POST['comments']
-	new_item = restaurantPizzaHutItem(peopleCount=x, reservationName=y, boothTable=z, comments=requests)
-	new_item.save()
-	return HttpResponseRedirect('/reservation/')
+def home(request):
+    context = {
+        'reservations': Reservation.objects.all()
+    }
+    return render(request, 'reservationapp/home.html', context)
 
-def deleteReservationView(request, i):
-	y = restaurantPizzaHutItem.objects.get(id= i)
-	y.delete()
-	return HttpResponseRedirect('/reservation/')
+
+def about(request):
+    return render(request, 'reservationapp/about.html', {'title': 'About'})
+
+
+def make_reservation(request):
+    return render(request, 'reservationapp/make_reservation.html')
+
+
+def add_reservation(request):
+    x = request.POST['reservationName']
+    y = request.POST['peopleCount']
+    z = request.POST['tablePref']
+    requests = request.POST['comments']
+    date = request.POST['reservationTime']
+    new_item = Reservation(reservationName=x, peopleCount=y, boothTable=z, requests=requests, date=date)
+    new_item.save()
+    return redirect('reservationapp-home')
+
