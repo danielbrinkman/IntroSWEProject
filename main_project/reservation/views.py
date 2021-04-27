@@ -1,13 +1,15 @@
 from django.shortcuts import render, redirect
 from .models import Reservation
 from users.models import *
-
+from django.contrib import messages
+from restaurants.models import Restaurant
 
 def home(request):
     context = {
         'reservations': Reservation.objects.all()
     }
     return render(request, 'reservation/home.html', context)
+
 
 def profile(request):
     context = {
@@ -21,7 +23,14 @@ def about(request):
 
 
 def make_reservation(request):
-    return render(request, 'reservation/make_reservation.html')
+    if request.user.is_authenticated:
+        context = {
+            'restaurants': Restaurant.objects.all()
+        }
+        return render(request, 'reservation/make_reservation.html', context)
+    else:
+        messages.error(request, f'You must be logged in to make a reservation!')
+        return redirect('login')
 
 
 def add_reservation(request):
@@ -31,7 +40,8 @@ def add_reservation(request):
     requests = request.POST['comments']
     date = request.POST['reservationTime']
     user = request.user.username
-    new_item = Reservation(reservationName=x, peopleCount=y, boothTable=z, requests=requests, date=date, user=user)
+    res = request.POST['restaurants']
+    new_item = Reservation(reservationName=x, peopleCount=y, boothTable=z, requests=requests, date=date, user=user, restaurant=res)
     new_item.save()
     return redirect('reservation-home')
 

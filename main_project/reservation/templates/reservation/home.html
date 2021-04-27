@@ -1,34 +1,13 @@
 {% extends "reservation/base.html" %}
-<<<<<<< HEAD
-<<<<<<< HEAD:main_project/reservation/templates/reservation/home.html
-=======
-{% load crispy_forms_tags %}
->>>>>>> c74333b0f5dcc7aeab1a0348f1c5409d24f04168:main_project/users/templates/users/profile.html
-{% block content%}
-   <h1>User: {{ user.username }}</h1>
-   <h2>Your Reservations</h2>
-   {% for reservation in reservations %}
-      {% if reservation.user == user.username %} 
-=======
 {% block content%}
     <h2>Reservations Around You</h2>
     {% for reservation in reservations %}
->>>>>>> c74333b0f5dcc7aeab1a0348f1c5409d24f04168
         <article class="media content-section">
           <div class="media-body">
             <div class="article-metadata">
               <a class="mr-2" >{{ reservation.reservationName }}</a>
               <small class="text-muted">{{ reservation.date|date:"F d, Y" }}</small>
             </div>
-<<<<<<< HEAD
-            <h3><a class="article-title" href="#">{{ reservation.peopleCount }}</a></h3>
-            <p class="article-content">{{ reservation.requests }}</p>
-          </div>
-        </article>
-       {% endif %}
-    {% endfor %}
-{% endblock content %}
-=======
             <h3><a class="article-title" >{{ reservation.peopleCount }} people attending</a></h3>
             <p class="article-content"> Special Requests: {{ reservation.requests }}</p>
               <p class="article-content">At: {{ reservation.restaurant }}</p>
@@ -36,4 +15,3 @@
         </article>
     {% endfor %}
 {% endblock content %}
->>>>>>> c74333b0f5dcc7aeab1a0348f1c5409d24f04168
