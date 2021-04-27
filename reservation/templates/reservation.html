@@ -1,0 +1,39 @@
+<Title>Reservation by Lil Dough Bois</Title>
+
+<h1> Make a reservation!</h1>
+<body>
+	
+	<form action="/addReservationItem/" method = "POST">{% csrf_token %}
+		<input type="number" min="1" max="50" style="width: 200px;"name="peopleCount" placeholder="How many people? (max 50)" required> <br>
+		<input type="text" name="reservationName" placeholder="Name" required> <br>
+		<input type="text" name="comments" placeholder="Special requests"> <br>
+		<input type="radio" id="Booth" name="tablePref" value="Booth">
+		<label for="Booth">Booth</label><br>
+		<input type="radio" id="Table" name="tablePref" value="Table">
+		<label for="Table">Table</label><br>
+		<input type="radio" id="No Preference" name="tablePref" value="No Preference" checked>
+		<label for="No Preference">No Preference</label> <br>
+		<label for="reservationTime">Reservation date:</label>
+  		<input type="text" id="reservationTime" name="reservationTime">
+        
+		<input type="submit" value="Make Reservation">
+	</form>
+
+	<p> FOR DEV PURPOSES </p>
+	<ul>
+		{% for i in all_items %} 
+        	<li>
+				People Count: {{i.peopleCount}} <br>
+				Reservation Name: {{i.reservationName}} <br>
+				Preference: {{i.boothTable}} <br>
+				Special Request: {{i.comments}}
+        	</li>
+
+        	<form action="/deleteReservationItem/{{i.id}}/" method = "post">{% csrf_token %}
+            		<input type="submit" value="Delete">
+        	</form>  
+
+        	{% endfor %}
+    	</ul>
+
+</body>
