@@ -1,13 +1,13 @@
 from django.db import models
+from django.contrib.auth.models import User
+from django.utils import timezone
 
-# Create your models here. THESE ARE DB TABLES
-class reservationItem(models.Model):
-	content = models.TextField()
+class Reservation(models.Model):
+    reservationName = models.TextField()
+    date = models.DateTimeField(default=timezone.now)
+    peopleCount = models.IntegerField()
+    boothTable = models.TextField()
+    requests = models.TextField()
+    user = models.TextField()
 
-class restaurantPizzaHutItem(models.Model):
-	peopleCount = models.IntegerField()
-	reservationName = models.TextField()
-	boothTable = models.TextField()
-	comments = models.TextField()
-	#isReserved = True
 
