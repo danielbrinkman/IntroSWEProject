@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import UserRegisterForm
+from reservation.models import Reservation
 
 
 def register(request):
@@ -20,4 +21,7 @@ def register(request):
 
 @login_required
 def profile(request):
-    return render(request, 'users/profile.html')
+    context = {
+        'reservations': Reservation.objects.all()
+    }
+    return render(request, 'users/profile.html', context)

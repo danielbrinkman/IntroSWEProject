@@ -9,6 +9,12 @@ def home(request):
     }
     return render(request, 'reservation/home.html', context)
 
+def profile(request):
+    context = {
+        'reservations': Reservation.objects.all()
+    }
+    return render(request, 'reservation/profile.html', context)
+
 
 def about(request):
     return render(request, 'reservation/about.html', {'title': 'About'})
@@ -24,7 +30,8 @@ def add_reservation(request):
     z = request.POST['tablePref']
     requests = request.POST['comments']
     date = request.POST['reservationTime']
-    new_item = Reservation(reservationName=x, peopleCount=y, boothTable=z, requests=requests, date=date)
+    user = request.user.username
+    new_item = Reservation(reservationName=x, peopleCount=y, boothTable=z, requests=requests, date=date, user=user)
     new_item.save()
     return redirect('reservation-home')
 
