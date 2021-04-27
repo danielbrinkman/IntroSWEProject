@@ -70,7 +70,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'reservationapp.wsgi.application'
+WSGI_APPLICATION = 'reservation.wsgi.application'
 
 
 # Database
